@@ -225,12 +225,14 @@ class CapitalT(object):
           :type dx: int
           :type dy: int
         """
-        move_h_rect_corner1 = rg.Point(self.h_rect.corner_1.x + dx, self.h_rect.corner_1.y + dy)
-        move_h_rect_corner2 = rg.Point(self.h_rect.corner_2.x + dx, self.h_rect.corner_2.y + dy)
-        self.h_rect = rg.Rectangle(move_h_rect_corner1, move_h_rect_corner2)
-        move_v_rect_corner1 = rg.Point(self.v_rect.corner_1.x + dx, self.v_rect.corner_1.y + dy)
-        move_v_rect_corner2 = rg.Point(self.v_rect.corner_2.x + dx, self.v_rect.corner_2.y + dy)
-        self.v_rect = rg.Rectangle(move_v_rect_corner1, move_v_rect_corner2)
+        self.h_rect.corner_1.x += dx
+        self.h_rect.corner_1.y += dy
+        self.h_rect.corner_2.x += dx
+        self.h_rect.corner_2.y += dy
+        self.v_rect.corner_1.x += dx
+        self.v_rect.corner_1.y += dy
+        self.v_rect.corner_2.x += dx
+        self.v_rect.corner_2.y += dy
 
 
         # --------------------------------------------------------------
@@ -272,8 +274,9 @@ class CapitalT(object):
         width = self.h_rect.corner_2.x - self.h_rect.corner_1.x
         height = self.v_rect.corner_2.y - self.v_rect.corner_1.y
         letter_thickness = self.h_rect.corner_2.y - self.h_rect.corner_1.y
-        t = CapitalT(intersection,width,height,letter_thickness)
-        t.h_rect.outline_color 
+        t = CapitalT(intersection, width, height, letter_thickness)
+        t.set_colors(self.h_rect.fill_color,self.h_rect.outline_color)
+
         return t
 
 
